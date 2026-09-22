@@ -1,0 +1,399 @@
+// ── Schedule section ─────────────────────────────────────────────────────────
+// Desktop authored against the 1200px frame (px / 12 -> cqi). Mobile keeps the
+// mockup's fluid rules. Event colors are reproduced verbatim from the mockup.
+
+// ── Desktop ──────────────────────────────────────────────────────────────────
+.mb-sched {
+  position: relative;
+  min-height: 61.083cqi;
+  overflow: hidden;
+  background: linear-gradient(176deg, #fcf4ed 5%, #f8e4d2 98%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4cqi;
+
+  .mb-sched__blur {
+    position: absolute;
+    border-radius: 50%;
+    background: #fff;
+    filter: blur(5.333cqi);
+    z-index: 0;
+  }
+  .mb-sched__blur--b1 {
+    width: 37.75cqi;
+    height: 37.75cqi;
+    left: 65.083cqi;
+    top: -2.833cqi;
+    opacity: 0.16;
+  }
+  .mb-sched__blur--b2 {
+    width: 33cqi;
+    height: 33cqi;
+    left: -0.5cqi;
+    top: 34.167cqi;
+    opacity: 0.11;
+  }
+
+  .mb-sched__inner {
+    position: relative;
+    z-index: 2;
+    width: 76.667cqi;
+    display: flex;
+    flex-direction: column;
+    gap: 0.833cqi;
+  }
+
+  .mb-sched__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2cqi;
+
+    h2 {
+      min-width: 0;
+      font-weight: 700;
+      font-size: clamp(30px, 3.417cqi, 41px); // Figma 41px
+      line-height: 1.05;
+      letter-spacing: 0.22px;
+      color: #000;
+    }
+  }
+
+  .mb-sched__tabs {
+    display: flex;
+    gap: 1cqi;
+    flex-shrink: 0;
+
+    button {
+      height: 3.833cqi;
+      padding: 0 2.167cqi;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--mb-font);
+      font-weight: 500;
+      font-size: clamp(9px, 1.25cqi, 15px);
+      letter-spacing: -0.23px;
+      background: #fff;
+      color: #000;
+      transition: all 0.2s ease;
+
+      &.is-active {
+        background: #000;
+        color: #fff;
+      }
+      &:focus-visible {
+        outline: 2px solid #000;
+        outline-offset: 3px;
+      }
+    }
+  }
+
+  .mb-sched__sub {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-weight: 400;
+      font-size: clamp(10px, 1.417cqi, 17px);
+      line-height: 1.624;
+      letter-spacing: -0.43px;
+      color: #000;
+    }
+  }
+
+  .mb-sched__week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 0.333cqi;
+
+    span {
+      font-weight: 600;
+      font-size: clamp(12px, 1.667cqi, 20px);
+      line-height: 0.975;
+      letter-spacing: -0.08px;
+      text-align: center;
+      color: #000;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+      padding: 1.417cqi 0;
+
+      &.is-hl {
+        color: #f28b8a;
+        text-shadow: none;
+      }
+    }
+  }
+
+  .mb-sched__cal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.333cqi;
+    // Toggle Standard (4 rows ≈ 25cqi) <-> Pro (7 rows ≈ 44cqi) eases the height
+    // change (overflow clipped) so content below the section never jumps.
+    overflow: hidden;
+    max-height: 26cqi;
+    transition: max-height 0.45s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.is-pro {
+      max-height: 46cqi;
+    }
+  }
+  .mb-sched__row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.333cqi;
+    min-height: 6cqi;
+  }
+
+  .mb-sched__ev {
+    height: 6cqi;
+    display: flex;
+    align-items: center;
+    padding-left: 2cqi;
+    border-radius: 1.167cqi;
+    font-weight: 600;
+    font-size: clamp(8px, 1.083cqi, 13px);
+    letter-spacing: 0.25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .mb-sched__ev--full {
+    grid-column: 1 / -1;
+    border-radius: 0.833cqi;
+  }
+  .mb-sched__ev--tune {
+    background: rgba(243, 229, 245, 0.7);
+    color: #d88ec9;
+  }
+  .mb-sched__ev--booster {
+    background: rgba(241, 222, 187, 0.7);
+    color: #e8a84d;
+  }
+  .mb-sched__ev--mc {
+    background: rgba(232, 245, 233, 0.4);
+    color: #6bc87b;
+    font-size: clamp(8px, 1.167cqi, 14px);
+    letter-spacing: 0.2px;
+  }
+  .mb-sched__ev--air {
+    background: rgba(227, 242, 253, 0.4);
+    color: #64b5f6;
+    font-size: clamp(8px, 1.167cqi, 14px);
+    letter-spacing: 0.2px;
+  }
+  .mb-sched__ev--derma {
+    background: rgba(252, 228, 236, 0.4);
+    color: #e65283;
+    border-radius: 0.833cqi;
+  }
+  .mb-sched__ev--body {
+    background: rgba(244, 214, 163, 0.4);
+    color: #e8a84d;
+    font-size: clamp(8px, 1.167cqi, 14px);
+    letter-spacing: 0.2px;
+  }
+  .mb-sched__ev--line-booster {
+    background: rgba(227, 242, 253, 0.4);
+    color: #64b5f6;
+  }
+  .mb-sched__ev--line-shot {
+    background: rgba(252, 228, 236, 0.4);
+    color: #e65283;
+    border-radius: 1.167cqi;
+  }
+
+  .mb-sched__note {
+    font-weight: 400;
+    font-size: clamp(8px, 1.083cqi, 13px);
+    line-height: 1.5;
+    letter-spacing: -0.08px;
+    color: #000;
+  }
+}
+
+// ── Mobile ───────────────────────────────────────────────────────────────────
+.mb-sched-m {
+  position: relative;
+  width: 100%;
+  // The coloured block fills the landing column (1.25rem side padding); the copy
+  // and calendar get their own horizontal inset inside the block (matches Figma —
+  // content isn't flush to the coloured edges).
+  padding: 30px 16px;
+  overflow: hidden;
+  background: linear-gradient(175deg, #fcf4ed 5%, #f8e4d2 98%);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .mb-sched-m__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    // parent `.mb-sched-m` centres its children (align-items:center), which
+    // would shrink-wrap this row; force full width so the heading (flex:1)
+    // actually claims the space left of the tabs.
+    width: 100%;
+
+    h2 {
+      // Figma mobile: 16px heading on 2 lines, sitting beside the (small) tab
+      // pills. Fluid so it scales gently up to the 700px breakpoint but stays
+      // compact — the heading grows (flex:1) while the tabs keep a fixed width.
+      font-size: mb-fluid(15);
+      font-weight: 700;
+      line-height: 1.14;
+      letter-spacing: 0.1px;
+      color: #000;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+  }
+
+  .mb-sched-m__tabs {
+    display: flex;
+    gap: 5px;
+    flex: 0 0 auto;
+
+    button {
+      height: 26px;
+      padding: 0 9px;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-family: var(--mb-font);
+      font-weight: 500;
+      font-size: mb-fluid(8.5);
+      letter-spacing: -0.1px;
+      background: #fff;
+      color: #000;
+
+      &.is-active {
+        background: #000;
+        color: #fff;
+      }
+      &:focus-visible {
+        outline: 2px solid #000;
+        outline-offset: 3px;
+      }
+    }
+  }
+
+  .mb-sched-m__sub {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: mb-fluid(11);
+      line-height: 1.5;
+      color: #000;
+    }
+  }
+
+  .mb-sched-m__week {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 2px;
+
+    span {
+      font-size: mb-fluid(11);
+      font-weight: 500;
+      text-align: center;
+      color: #000;
+
+      &.is-hl {
+        color: #f28b8a;
+      }
+    }
+  }
+
+  .mb-sched-m__cal {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    // Standard 4 rows ≈ 148px, Pro 7 rows ≈ 262px — ease the height change.
+    overflow: hidden;
+    max-height: 152px;
+    transition: max-height 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.is-pro {
+      max-height: 268px;
+    }
+  }
+  .mb-sched-m__row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    min-height: 34px;
+  }
+
+  .mb-sched-m__ev {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    padding-left: 2px;
+    border-radius: 4px;
+    // Single-cell labels (PRO·MC / PRO·AIR / PRO·DERMA / LINE·SHOT) must fit a
+    // ~33px column. Deliberately NOT scaled by `$mb-fluid-bump` (a fixed clamp):
+    // "PRO·DERMA" exactly fills the cell at the 320px floor, so the 5.8px min
+    // must stay. Slope + cap are tuned so the label grows WITH the cell on wider
+    // phones (~6.4px @375, ~6.8px @414, capping 8.7px) while "PRO·DERMA" /
+    // "LINE·SHOT" still fit with margin at every width up to the 700px breakpoint
+    // (verified: no overflow 320→690). Bumped vs the old 5.8–7.5px range.
+    font-size: clamp(5.8px, calc(2.49px + 1.04vw), 8.7px);
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .mb-sched-m__ev--full {
+    grid-column: 1 / -1;
+    font-size: mb-fluid(8.5);
+    padding-left: 8px;
+  }
+  .mb-sched-m__ev--tune {
+    background: rgba(243, 229, 245, 0.7);
+    color: #d88ec9;
+  }
+  .mb-sched-m__ev--booster {
+    // Match the desktop band — the old light 0.4 peach blended into the section's
+    // cream→peach background; the mockup wants this row distinct (like TUNE above).
+    background: rgba(241, 222, 187, 0.7);
+    color: #e8a84d;
+  }
+  .mb-sched-m__ev--mc {
+    background: rgba(232, 245, 233, 0.4);
+    color: #42b455;
+  }
+  .mb-sched-m__ev--air {
+    background: rgba(227, 242, 253, 0.4);
+    color: #64b5f6;
+  }
+  .mb-sched-m__ev--derma {
+    background: rgba(252, 228, 236, 0.4);
+    color: #e65283;
+  }
+  .mb-sched-m__ev--body {
+    background: rgba(245, 235, 217, 0.5);
+    color: #cf9233;
+  }
+  .mb-sched-m__ev--line-booster {
+    background: rgba(118, 128, 145, 0.12);
+    color: #7c8aa0;
+  }
+  .mb-sched-m__ev--line-shot {
+    background: rgba(252, 228, 236, 0.4);
+    color: #e65283;
+  }
+
+  .mb-sched-m__note {
+    font-size: mb-fluid(10);
+    line-height: 1.4;
+    color: #000;
+    margin-top: 2px;
+  }
+}

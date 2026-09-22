@@ -1,0 +1,11 @@
+// Per-section styles for the Medicube Booster landing. Each partial is owned by
+// its section component and ported from medicu-landing.html (desktop px -> cqi,
+// mobile fluid). Shared tokens/classes live in ../index.scss.
+@import 'headline';
+@import 'hero';
+@import 'beforeafter';
+@import 'technologies';
+@import 'ritual';
+@import 'reviews';
+@import 'guarantee';
+@import 'schedule';

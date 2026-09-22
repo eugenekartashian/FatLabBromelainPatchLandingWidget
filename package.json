@@ -1,0 +1,27 @@
+{
+  "name": "landing-sandbox",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "check:keys": "node scripts/check-keys.mjs",
+    "check:text": "node scripts/check-text.mjs"
+  },
+  "dependencies": {
+    "classnames": "2.5.1",
+    "mobx-react-lite": "4.0.5",
+    "mobx": "6.12.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.0",
+    "@vitejs/plugin-react": "4.3.1",
+    "sass": "1.77.8",
+    "typescript": "5.4.5",
+    "vite": "5.4.0"
+  }
+}

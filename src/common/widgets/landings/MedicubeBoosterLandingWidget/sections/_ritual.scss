@@ -1,0 +1,402 @@
+// Ritual section — ported from medicu-landing.html `.ritual` / `.m-ritual`.
+// Desktop authored against the 1200px frame → px / 12 = cqi. Mobile keeps the
+// mockup's fluid rules. Shared tokens/classes live in ../index.scss.
+
+// ── Desktop ──────────────────────────────────────────────────────────────────
+.mb-ritual {
+  min-height: 66.667cqi;
+  background: #fff;
+  padding: 4cqi;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.417cqi;
+
+  &__steps {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &__step {
+    position: relative;
+    width: 32.167cqi;
+    height: 32.667cqi;
+  }
+
+  &__krok {
+    position: absolute;
+    left: 17.167cqi;
+    top: -0.5cqi;
+    font-weight: 700;
+    font-size: clamp(24px, 3.333cqi, 40px);
+    line-height: 1;
+    color: var(--mb-accent);
+    z-index: 1;
+  }
+
+  &__num {
+    position: absolute;
+    left: 1.5cqi;
+    top: -0.167cqi;
+    font-weight: 700;
+    font-size: clamp(175px, 29.167cqi, 350px);
+    line-height: 0.7;
+    color: var(--mb-accent);
+    text-shadow: 0 0.333cqi 0.333cqi rgba(0, 0, 0, 0.25);
+    z-index: 0;
+  }
+
+  &__card {
+    position: absolute;
+    left: 8.083cqi;
+    top: 3.417cqi;
+    width: 24.083cqi;
+    height: 29.167cqi;
+    z-index: 2;
+    border: 1px solid rgba(169, 169, 169, 0.5);
+    border-radius: 1.167cqi;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2cqi;
+    padding: 1.083cqi;
+
+    h3 {
+      font-weight: 600;
+      font-size: clamp(13px, 1.583cqi, 19px);
+      line-height: 1.42;
+      letter-spacing: -0.44px;
+      color: var(--mb-ink);
+      text-align: center;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: clamp(11px, 1.25cqi, 15px);
+      line-height: 1.47;
+      letter-spacing: -0.31px;
+      color: var(--mb-muted);
+      text-align: center;
+    }
+  }
+
+  &__head-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.667cqi;
+    align-items: center;
+  }
+
+  &__img {
+    width: 20.583cqi;
+    height: 16.667cqi;
+    border-radius: 0.833cqi;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+  }
+
+  &__info {
+    position: relative;
+    z-index: 1; // sits above the Reviews sphere that bleeds up under this banner
+    width: 92cqi;
+    height: 9.333cqi;
+    border-radius: 1.667cqi;
+    overflow: hidden;
+    background: linear-gradient(174deg, rgba(252, 231, 243, 0.6), rgba(254, 242, 248, 0.4));
+    border: none;
+  }
+
+  // Highlighted phrase in the info text (mockup) + soft grey decorative bubbles
+  // (clipped into semicircles by the block's overflow:hidden).
+  &__info-accent {
+    color: var(--mb-accent);
+  }
+  &__info-bubble {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(159, 159, 159, 0.5), rgba(0, 0, 0, 0) 70%);
+  }
+  &__info-bubble--1 {
+    width: 11cqi;
+    height: 11cqi;
+    right: 4cqi;
+    top: -3.5cqi;
+    opacity: 0.55;
+  }
+  &__info-bubble--2 {
+    width: 7cqi;
+    height: 7cqi;
+    right: 13cqi;
+    top: 1.5cqi;
+    opacity: 0.35;
+  }
+
+  &__info-row {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.667cqi;
+    padding: 1.667cqi;
+  }
+
+  &__info-icon {
+    flex: 0 0 auto;
+    width: 4.667cqi;
+    height: 4.667cqi;
+    border-radius: 1.333cqi;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(16px, 2.167cqi, 26px);
+    background: linear-gradient(135deg, #7a7a7a, #e6e6e6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &__info-txt {
+    h4 {
+      font-weight: 600;
+      font-size: clamp(12px, 1.417cqi, 17px);
+      line-height: 1.41;
+      letter-spacing: -0.44px;
+      color: var(--mb-ink);
+      margin-bottom: 0.333cqi;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: clamp(12px, 1.333cqi, 16px);
+      line-height: 1.37;
+      letter-spacing: -0.31px;
+      color: var(--mb-muted);
+    }
+  }
+}
+
+// ── Mobile ───────────────────────────────────────────────────────────────────
+.mb-ritual-m {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+
+  &__head {
+    h2 .mb-grad-gray {
+      font-weight: 600;
+    }
+
+    p {
+      font-weight: 400;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    // mockup column is 261px @360; let it breathe a little as the fluid
+    // type grows towards the 700px breakpoint so card text wraps less
+    max-width: clamp(261px, 60vw, 330px);
+  }
+
+  &__step {
+    position: relative;
+    display: flex;
+    // Top-align so the big number sits up by the "step" label (mockup), instead
+    // of being vertically centred against the taller card and dropping below it.
+    align-items: flex-start;
+    min-height: 96px;
+    // reserved strip for the "step" label: the card top sits just under it.
+    padding-top: 24px;
+  }
+
+  &__num {
+    font-weight: 700;
+    font-size: mb-fluid(90);
+    line-height: 0.8;
+    color: var(--mb-accent);
+    width: 90px;
+    flex: 0 0 auto;
+    text-align: center;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.22);
+  }
+
+  &__krok {
+    position: absolute;
+    // sits in the step's reserved top strip, above the card's top-left
+    // (tracks the card after its -10px margin)
+    left: 76px;
+    top: 2px;
+    font-weight: 700;
+    font-size: mb-fluid(14);
+    color: var(--mb-accent);
+    z-index: 2;
+  }
+
+  &__card {
+    flex: 1;
+    // ~10px gap between the big number and the card (was -30 = overlap)
+    margin-left: -10px;
+    border: 1px solid rgba(114, 114, 114, 0.5);
+    border-radius: 6px;
+    background: transparent;
+    padding: 6px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  &__txt {
+    h3 {
+      font-size: mb-fluid(12);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+      color: var(--mb-ink);
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: mb-fluid(10);
+      line-height: 1.35;
+      color: var(--mb-muted);
+    }
+  }
+
+  &__img {
+    flex: 0 0 auto;
+    width: 71px;
+    height: 57.5px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+  }
+
+  &__info {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 6.25px;
+    display: flex;
+    gap: 6.25px;
+    align-items: center;
+    background: linear-gradient(171deg, rgba(252, 231, 243, 0.5), rgba(254, 242, 248, 0.32)),
+      rgba(255, 255, 255, 0.7);
+    border: none;
+  }
+
+  // Soft grey decorative blob bled into the very top-right corner, clipped by the
+  // block's overflow:hidden — mirrors the desktop `.mb-ritual__info-bubble`, which
+  // the mobile markup was missing. The mobile box is narrow (~353×62) and the body
+  // text reaches to within ~14px of the right edge below y≈22, so the blob is kept
+  // flush to the corner and shallow (visible arc above y≈20) to stay clear of text.
+  &__info-bubble {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(159, 159, 159, 0.6), rgba(0, 0, 0, 0) 70%);
+  }
+  &__info-bubble--1 {
+    width: 64px;
+    height: 64px;
+    right: -6px;
+    top: -44px;
+    opacity: 0.6;
+  }
+
+  &__info-icon {
+    flex: 0 0 auto;
+    // Keep the icon above the decorative bubbles.
+    position: relative;
+    z-index: 1;
+    // Badge was 17.5px → the emoji filled it and the gray gradient "circle" from
+    // the mockup didn't read. Enlarge to a clear badge with desktop-like emoji
+    // margin (box ≈ 2.2× the glyph), keeping the same corner-radius proportion.
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: mb-fluid(12);
+    background: linear-gradient(135deg, #7a7a7a, #e6e6e6);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &__info-txt {
+    position: relative;
+    z-index: 1; // above the decorative bubbles
+
+    h4 {
+      font-size: mb-fluid(12);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--mb-ink);
+      margin-bottom: 3px;
+    }
+
+    p {
+      font-size: mb-fluid(10);
+      line-height: 1.35;
+      color: var(--mb-muted);
+    }
+  }
+}
+
+// Ritual underline runs short: ritual-title-underline.svg draws its line over
+// only the central ~27% of the 371.758 viewBox (path x 136→235), vs the ~54%
+// span (x 86→286) in the before-after / reviews underlines. With
+// preserveAspectRatio="none" the stretched line is therefore ~half as long.
+// Compensate by ~doubling the squiggle box width so slide 4 reaches the same
+// line-to-text ratio as the sibling heads (scoped to ritual — the shared
+// `.mb-squiggle` in ../index.scss stays at the sibling-correct 110%/108%).
+.mb-ritual .mb-uline .mb-squiggle {
+  width: 340%;
+  max-width: 744px;
+}
+
+@media (max-width: 43.74875em) {
+  .mb-ritual-m .mb-uline .mb-squiggle {
+    width: 330%;
+    max-width: 480px;
+  }
+}
+
+// The mobile head paints its text via `.mb-grad-gray` (transparent fill + a
+// gradient clipped to the parent's text). The underlined word sits in an
+// inline-block `.mb-uline`, which falls outside that text-clip and would inherit
+// the transparent fill with no gradient of its own — rendering invisible (only
+// ritual wraps its whole mobile head in `.mb-grad-gray`, hence only ritual hit
+// this). Re-apply the same gray gradient to the span so "Booster Pro" shows,
+// matching the rest of the heading.
+.mb-ritual-m .mb-uline {
+  background: linear-gradient(90deg, #656565, #393939);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}

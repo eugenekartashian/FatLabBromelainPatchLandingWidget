@@ -1,0 +1,266 @@
+// Technologies section — desktop `.mb-tech` / mobile `.mb-tech-m`.
+// Desktop authored against the 1200px frame: px -> cqi (px / 12).
+
+// ── Desktop ──────────────────────────────────────────────────────────────────
+.mb-tech {
+  position: relative;
+  min-height: 61.083cqi; // 733px
+  background: #fff;
+  overflow: hidden;
+  padding: 2.667cqi 4cqi 1.667cqi; // 32 / 48 / 20px — heading near top, cards reach bottom (Figma)
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.667cqi; // 20px (heading → cards)
+
+  .mb-tech__band {
+    position: absolute;
+    left: 50%;
+    top: -0.25cqi; // -3px
+    width: 100.083cqi; // 1201px
+    height: 14.25cqi; // 171px
+    transform: translateX(-50%) scaleY(-1);
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  .mb-tech__sec-head {
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      font-weight: 500;
+      letter-spacing: 0.07px;
+      max-width: 72.083cqi; // 865px
+      line-height: 2.667cqi; // 32px
+    }
+    p {
+      max-width: 80cqi; // 960px
+    }
+  }
+
+  .mb-tech__main {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0;
+    width: 92cqi; // 1104px
+    min-height: 50cqi; // 600px
+    position: relative;
+    z-index: 2;
+  }
+
+  .mb-tech__device {
+    position: absolute;
+    left: -1.667cqi; // -20px
+    top: 50%;
+    transform: translateY(-50%);
+    width: 51.667cqi; // 620px
+    height: 50cqi; // 600px
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+
+    // tech-devices.webp is pre-composed with the full device on the left and
+    // the four mode heads on the right — shown as-is. No CSS mirroring: a
+    // flipped render reverses the on-device labels (BOOSTER / MODE / 0:28).
+    img {
+      // Device art now ships at 2x (768×1028) for crisp on-device labels; pin the
+      // display box to the design size (cqi) so the higher resolution doesn't
+      // enlarge it — and so it scales with the column like the rest of the design
+      // (the old version relied on the image's intrinsic px and stayed fixed).
+      width: 32cqi; // 384px @ 1200 frame
+      height: 42.833cqi; // 514px @ 1200 frame
+      object-fit: contain;
+    }
+  }
+
+  .mb-tech__grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 26.5cqi); // 318px
+    gap: 1.667cqi; // 20px
+  }
+
+  .mb-tcard {
+    width: 26.5cqi; // 318px
+    height: 15.417cqi; // 185px
+    border-radius: 2cqi; // 24px
+    border: 1px solid var(--mb-line);
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1));
+    // Blur whatever is behind (the device bleeds in from the left) so it reads
+    // as a soft backdrop instead of a sharp device through the card.
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.167cqi; // 14px
+    padding: 1.667cqi; // 20px
+    position: relative;
+  }
+
+  .mb-tcard__top {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .mb-tcard__emoji {
+    width: 6.667cqi; // 80px
+    height: 6.667cqi; // 80px
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(28px, 4cqi, 48px);
+    line-height: 1;
+  }
+
+  .mb-tcard__txt {
+    h3 {
+      font-weight: 600;
+      font-size: clamp(12px, 1.667cqi, 20px);
+      line-height: 2.333cqi; // 28px
+      letter-spacing: -0.45px;
+      color: var(--mb-ink);
+      margin-bottom: 1.667cqi; // 20px
+    }
+    p {
+      font-weight: 400;
+      font-size: clamp(11px, 1.333cqi, 16px);
+      line-height: 2cqi; // 24px
+      letter-spacing: -0.31px;
+      color: var(--mb-muted);
+    }
+  }
+
+  .mb-tcard__bar {
+    height: 0.333cqi; // 4px
+    width: 100%;
+    border-radius: 2px;
+    margin-top: auto;
+  }
+}
+
+// ── Mobile ───────────────────────────────────────────────────────────────────
+.mb-tech-m {
+  position: relative;
+  width: 100%;
+  // Horizontal inset comes from the landing's 1.25rem mobile side padding (the
+  // shared standard across landings); no extra section padding here.
+  padding: 30px 0;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .mb-tech-m__band {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 54px;
+    transform: scaleY(-1);
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 102%;
+      object-fit: fill;
+    }
+  }
+
+  .mb-tech-m__head {
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      font-weight: 500;
+      font-size: mb-fluid(18);
+    }
+  }
+
+  .mb-tech-m__body {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .mb-tgrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    // minmax(0,1fr) so the columns can't exceed half the row — default `1fr`
+    // has min-width:auto, letting long words / the emoji push the right column
+    // past the grid edge (clipped at ≤~360px). Keeps the 2-col grid equal.
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    // Inner inset so the cards don't run flush to the container edges (same as
+    // the BeforeAfter benefit grid); the band/device behind stay full-width.
+    padding: 0 15px;
+  }
+
+  .mb-tcard-m {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    border-radius: 12px;
+    border: 1px solid var(--mb-line);
+    padding: 8px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.07), rgba(255, 255, 255, 0.1));
+    // Blur the device bleeding in behind the cards (see desktop note).
+    backdrop-filter: blur(8px);
+  }
+
+  .mb-tcard-m__emoji {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: mb-fluid(25);
+    line-height: 1;
+  }
+
+  .mb-tcard-m {
+    h3 {
+      grid-column: 2;
+      grid-row: 1;
+      font-size: mb-fluid(12);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.2px;
+      color: var(--mb-ink);
+      // Narrow 2-col grid at ≤~340px: a single long word (e.g. "Elektroporácia")
+      // must wrap rather than overflow its column. Only breaks when it can't fit.
+      overflow-wrap: anywhere;
+    }
+    p {
+      grid-column: 2;
+      grid-row: 2;
+      font-size: mb-fluid(10);
+      line-height: 1.3;
+      letter-spacing: -0.1px;
+      color: var(--mb-muted);
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .mb-tcard-m__bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    height: 3px;
+    width: 100%;
+    border-radius: 2px;
+    margin-top: 8px;
+  }
+}

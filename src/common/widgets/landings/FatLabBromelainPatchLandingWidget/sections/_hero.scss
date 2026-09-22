@@ -1,0 +1,205 @@
+.flb-hero {
+  position: relative;
+  min-height: 55.556cqi;
+  overflow: hidden;
+  background: transparent;
+  color: var(--flb-ink);
+
+  &__product {
+    position: absolute;
+    z-index: 1;
+    left: 10.903cqi;
+    top: -2.431cqi;
+    width: 115.764cqi;
+    height: 64.612cqi;
+    object-fit: fill;
+  }
+
+  &__leaves {
+    position: absolute;
+    z-index: 2;
+    top: -3.958cqi;
+    left: 81.962cqi;
+    width: 21.424cqi;
+    height: 27.59cqi;
+    object-fit: contain;
+    transform: matrix(0.9933, 0.1164, -0.1164, 0.9932, 0, 0);
+    transform-origin: 0 0;
+  }
+
+  &__logo {
+    position: absolute;
+    z-index: 3;
+    left: 66.042cqi;
+    top: 48.819cqi;
+    width: 7.778cqi;
+    height: 1.528cqi;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 4;
+    width: 46.2cqi;
+    padding-top: 8.611cqi;
+    margin-left: 4.167cqi;
+  }
+
+  h1 {
+    width: 47cqi;
+    color: var(--flb-ink);
+    font-size: clamp(24px, 4.167cqi, 64px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  & &__subtitle {
+    margin-top: 1.2cqi;
+    color: var(--flb-ink);
+    font-size: clamp(14px, 1.667cqi, 26px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.21;
+  }
+
+  & &__description {
+    width: 42.5cqi;
+    margin-top: 2.135cqi;
+    color: #3d3d3d;
+    letter-spacing: -0.01em;
+    font-size: clamp(11px, 1.111cqi, 18px);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  & &__instruction {
+    width: 44cqi;
+    white-space: pre-line;
+    margin-top: 1.944cqi;
+    color: var(--flb-ink);
+    font-size: clamp(13px, 1.389cqi, 22px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  &__facts {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqi;
+    margin-top: 2.585cqi;
+  }
+
+  &__fact {
+    display: flex;
+    align-items: center;
+    gap: 0.972cqi;
+    color: var(--flb-ink);
+
+    img { flex: 0 0 auto; width: 2.222cqi; height: 2.222cqi; }
+    &:nth-child(2) img { width: 2.222cqi; }
+    span { font-size: clamp(11px, 1.25cqi, 20px); font-weight: 600; line-height: 1.1; text-transform: uppercase; }
+  }
+
+  & &__cta { margin-top: 2.986cqi; }
+}
+
+.flb-hero-m {
+  overflow: hidden;
+  background: transparent;
+  color: var(--flb-ink);
+
+  &__media {
+    position: relative;
+    aspect-ratio: 393 / 366;
+    overflow: hidden;
+  }
+
+  &__product {
+    position: absolute;
+    left: -68.7%;
+    top: -9.84%;
+    width: 203.3%;
+    height: 121.9%;
+    object-fit: fill;
+  }
+
+  &__leaves {
+    position: absolute;
+    top: -6.56%;
+    left: 76.44%;
+    width: 28.96%;
+    height: auto;
+    transform: matrix(0.9782, 0.2084, -0.0643, 0.9979, 0, 0);
+    transform-origin: 0 0;
+  }
+
+  &__logo {
+    position: absolute;
+    left: 16.3%;
+    top: 84.97%;
+    width: 22.4%;
+    height: auto;
+  }
+
+  &__content {
+    padding: 38px 16px 32px;
+  }
+
+  h1 {
+    max-width: 362px;
+    color: var(--flb-ink);
+    font-size: flb-fluid(34);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  & &__subtitle {
+    margin-top: 4px;
+    color: var(--flb-ink);
+    font-size: flb-fluid(18);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.5;
+  }
+
+  & &__description {
+    margin-top: 9px;
+    max-width: 358px;
+    color: #3d3d3d;
+    font-size: flb-fluid(14);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  & &__instruction {
+    margin-top: 17px;
+    max-width: 358px;
+    color: var(--flb-ink);
+    font-size: flb-fluid(16);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  &__facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 22px;
+
+    .flb-hero-m__fact {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 11px;
+      color: var(--flb-ink);
+      text-align: center;
+
+      img { width: 27px; height: 27px; margin: 2.5px 0; }
+      &:nth-child(2) img { width: 32px; height: 32px; margin: 0; }
+      span { font-size: flb-fluid(14); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; text-transform: uppercase; white-space: normal; }
+    }
+  }
+}

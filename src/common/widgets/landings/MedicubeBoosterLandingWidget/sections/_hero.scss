@@ -1,0 +1,362 @@
+// HeroSection — mockup `.hero` (desktop) / `.m-hero` (mobile).
+// Desktop authored against the 1200px frame: every px → cqi (px / 12).
+
+// ── Desktop ──────────────────────────────────────────────────────────────────
+.mb-hero {
+  position: relative;
+  height: 66.667cqi;
+  background: #fff;
+  overflow: hidden;
+
+  &__bg {
+    position: absolute;
+    left: 25cqi;
+    top: 1.333cqi;
+    width: 100.25cqi;
+    height: 60.167cqi;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      // `contain` (not cover) so the device's top tip is never cropped; anchored
+      // to the bottom so the crystals sit on the wave and the spare space falls
+      // above the tip. The device art is transparent on a #fff section, so the
+      // letterbox gap is invisible.
+      object-fit: contain;
+      object-position: center bottom;
+    }
+  }
+
+  &__wave {
+    position: absolute;
+    left: 0;
+    bottom: -1.833cqi;
+    width: 100.4cqi;
+    height: 18.667cqi;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
+  &__colors {
+    position: absolute;
+    left: 5cqi;
+    top: 3.917cqi;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.833cqi;
+
+    b {
+      font-size: clamp(11px, 1.5cqi, 18px);
+      font-weight: 600;
+      color: #000;
+      white-space: nowrap;
+    }
+  }
+
+  &__swatches {
+    display: flex;
+    gap: 0.892cqi;
+    align-items: center;
+  }
+
+  &__swatch {
+    width: 3.75cqi;
+    height: 3.75cqi;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+
+    &.is-active {
+      // Fixed (not cqi) + tight so the selection ring hugs the swatch and never
+      // detaches / grows on wide desktops (which reads as a bigger button). Same
+      // ring on mobile and on the pink edition — one switcher style everywhere.
+      outline: 1.5px solid #e3e3e3;
+      outline-offset: 3px;
+      // The active swatch is the current page (static element), not a control.
+      cursor: default;
+    }
+    &:focus-visible {
+      outline: 2px solid #1a1a1a;
+      outline-offset: 3px;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    left: 4cqi;
+    top: 17.25cqi;
+    width: 44.667cqi;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 2.583cqi;
+    align-items: flex-start;
+
+    h2 {
+      font-weight: 500;
+      font-size: clamp(18px, 2.5cqi, 30px);
+      line-height: 1.2;
+      letter-spacing: 0.4px;
+      color: #000;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75cqi 1.667cqi;
+    border: 1px solid #000;
+    border-radius: 9999px;
+    background: rgba(94, 94, 94, 0.1);
+    font-size: clamp(9px, 1.167cqi, 14px);
+    line-height: 1.5;
+    letter-spacing: 0.49px;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  &__lead {
+    font-weight: 400;
+    font-size: clamp(11px, 1.333cqi, 16px);
+    line-height: 1.55;
+    letter-spacing: -0.15px;
+    color: var(--mb-gray);
+    width: 44.667cqi;
+  }
+
+  &__spec {
+    position: absolute;
+    z-index: 6;
+    height: 5.5cqi;
+    width: auto;
+    min-width: 11.167cqi;
+    display: flex;
+    align-items: center;
+    gap: 1cqi;
+    padding: 1.083cqi 2.083cqi;
+    border-radius: 1.333cqi;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--mb-line);
+    box-shadow: 0 1.667cqi 2.083cqi rgba(0, 0, 0, 0.1), 0 0.667cqi 0.833cqi rgba(0, 0, 0, 0.1);
+
+    img {
+      width: 1.667cqi;
+      height: 1.667cqi;
+    }
+
+    // Positions match the Figma frame (246:256), converted px/12 → cqi.
+    &--1 {
+      // Warranty / 2 years
+      left: 59.47cqi;
+      top: 26.77cqi;
+      border-color: var(--mb-line);
+    }
+    &--2 {
+      // Radiant / skin effect
+      left: 54.72cqi;
+      top: 39.35cqi;
+      border-color: #ffe4e6;
+    }
+    &--3 {
+      // Compatibility / with your favorite products
+      left: 76.72cqi;
+      top: 43.77cqi;
+      border-color: #f3e8ff;
+    }
+    &--4 {
+      // One device / 6 options
+      left: 81.17cqi;
+      top: 22.27cqi;
+      border-color: var(--mb-accent);
+    }
+  }
+
+  &__spec-lbl {
+    font-size: clamp(9px, 1cqi, 12px);
+    line-height: 1.33;
+    color: var(--mb-muted2);
+  }
+  &__spec-val {
+    font-size: clamp(11px, 1.333cqi, 16px);
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--mb-ink);
+    letter-spacing: -0.31px;
+  }
+}
+
+// Product-name accent in the hero headline — flat --mb-accent per the mockup
+// (shared by the desktop `.mb-hero` and mobile `.mb-hero-m` h2). A plain colour
+// class, not the `.mb-grad` whole-span gradient, so only the brand run is tinted.
+.mb-hero__brand {
+  color: var(--mb-accent);
+}
+
+// ── Mobile ─────────────────────────────────────────────────────────────────────
+.mb-hero-m {
+  width: 100%;
+  padding: 24px 0 0;
+  background: #fff;
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border: 1px solid #000;
+    border-radius: 9999px;
+    background: rgba(94, 94, 94, 0.1);
+    font-size: clamp(10px, 3vw, 12px);
+    line-height: 1.4;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  h2 {
+    font-weight: 500;
+    font-size: mb-fluid(20);
+    line-height: 1.25;
+    letter-spacing: 0.2px;
+    color: #000;
+  }
+
+  &__lead {
+    font-size: mb-fluid(13);
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    color: var(--mb-gray);
+  }
+
+  &__colors {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    b {
+      // Switcher label is a fixed UI control, NOT body copy — keep it at the
+      // reference size and identical to ProductImageLandingWidget's switcher
+      // (`clamp(13px, 1vw + 8px, 18px)`); the global +20% mobile bump must NOT
+      // enlarge it (it would diverge from the Figma reference / the pink edition).
+      font-size: clamp(13px, 1vw + 8px, 18px);
+      font-weight: 600;
+      color: #000;
+    }
+  }
+
+  &__swatches {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  // The swatch buttons reuse the desktop `.mb-hero__swatch` class (HeroSection
+  // renders identical buttons in both compositions), so the desktop cqi sizing
+  // (3.75cqi) leaks into mobile and shrinks the swatches with the viewport — pin
+  // them to a fixed px size here. Figma 100:13346 → 35px.
+  &__swatches .mb-hero__swatch {
+    width: 35px;
+    height: 35px;
+
+    &.is-active {
+      outline: 1.5px solid #e3e3e3;
+      outline-offset: 3px;
+    }
+    &:focus-visible {
+      outline: 2px solid #1a1a1a;
+      outline-offset: 3px;
+    }
+  }
+
+  &__media {
+    position: relative;
+    margin-top: 6px;
+    height: 300px;
+
+    > img {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 118%;
+      max-width: 118%;
+      height: 300px;
+      object-fit: contain;
+    }
+  }
+
+  &__chip {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--mb-line);
+    box-shadow: 0 12px 18px rgba(0, 0, 0, 0.12);
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    &--1 {
+      left: 4px;
+      top: 14px;
+      border-color: #ffe4e6;
+    }
+    &--2 {
+      right: 2px;
+      top: 60px;
+      border-color: #f3e8ff;
+    }
+    &--3 {
+      left: 4px;
+      top: 150px;
+      border-color: var(--mb-line);
+    }
+    &--4 {
+      right: 2px;
+      bottom: 14px;
+      border-color: var(--mb-accent);
+    }
+  }
+
+  &__chip-lbl {
+    font-size: mb-fluid(9);
+    line-height: 1.1;
+    color: var(--mb-muted2);
+  }
+  &__chip-val {
+    font-size: mb-fluid(12);
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--mb-ink);
+  }
+
+  &__wave {
+    display: block;
+    width: 100%;
+    height: 70px;
+    margin-top: -6px;
+  }
+}

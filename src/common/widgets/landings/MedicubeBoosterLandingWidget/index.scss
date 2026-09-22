@@ -1,0 +1,273 @@
+// Medicube Age-R Booster Pro Ex landing — foundation styles.
+//
+// Pull in Foundation `breakpoint(...)` + project SCSS vars (mirrors the sibling
+// landing widgets). Must precede the per-section partials.
+@import '../../../settings';
+
+// Fluid mobile type: each mobile font scales from its mockup size `$s` (at
+// ≤450px viewport — i.e. "as in the mockup") up to `1.3·$s` (at ≥700px), and
+// interpolates linearly in between. Defined before the section partials so they
+// can all use it. clamp floor = mockup size, so narrow phones (350px) never
+// overflow. Formula: size = 0.46·$s·px + 0.12·$s·vw, clamped to [$s, 1.3·$s].
+// `$mb-fluid-bump` enlarges every mobile font uniformly (floor, fluid term and
+// cap all scale together) — requested ~+10–15%. Verified at 320–700px to not
+// overflow; tune here in one place if needed.
+$mb-fluid-bump: 1.20;
+@function mb-fluid($s) {
+  $s: $s * $mb-fluid-bump;
+  @return clamp(#{$s}px, calc(#{$s * 0.46}px + #{$s * 0.12}vw), #{$s * 1.3}px);
+}
+
+// ─────────────────────────────────────────────────────────────────────────
+// RESPONSIVE MODEL (read before editing any section)
+// ───────────────────────────────────────────────────────────────────────────
+//  • Fully fluid — NO `transform: scale()`, NO JS scaler.
+//  • `.mb-landing__stage` is the query container; it fills the full 85rem column
+//    (like ProductLandingWidget / ProductImageLandingWidget), so the 1200 design
+//    fills the column with no side fields.
+//  • DESKTOP compositions are authored against the 1200px Figma frame. Convert
+//    every authored pixel to `cqi`:  cqi = px / 12   (100cqi == the column).
+//    Section heights:  height: (H / 12) * 1cqi.
+//    Font sizes:       clamp(<floor>, (px/12)*1cqi, <px>)  — floor keeps text legible.
+//  • MOBILE compositions keep the mockup's fluid rules (%, flex, small px →
+//    clamp where needed); they do NOT use the /12 cqi rule.
+//  • Desktop vs mobile DOM is toggled by `.mb-d` / `.mb-m` at the 700px
+//    breakpoint (project `medium`: min 43.75em / max 43.74875em).
+// ───────────────────────────────────────────────────────────────────────────
+
+@import './sections/sections.scss';
+
+// ── Container — matches the existing landing standard (ProductImageLandingWidget):
+//    85rem centred column, 24px auto margins, 1.25rem side padding on mobile.
+.mb-landing {
+  // Design tokens (scoped — not global :root — so they don't leak to the storefront).
+  --mb-accent: #f2cba6;
+  --mb-accent-d: #e8b17d;
+  --mb-ink: #101828;
+  --mb-muted: #4a5565;
+  --mb-muted2: #6a7282;
+  --mb-gray: #5a5a5a;
+  --mb-line: #d6d6d6;
+  --mb-font: #{$body-font-family};
+  --mb-font-cta: 'Gilroy', #{$body-font-family};
+
+  margin: 24px auto;
+  padding-bottom: clamp(24px, 3vw, 40px);
+  max-width: 85rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  background: #fff;
+  color: var(--mb-ink);
+  font-family: var(--mb-font);
+  overflow-x: clip;
+
+  @media (max-width: 43.74875em) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+}
+
+// ── Stage = the cqi query frame ───────────────────────────────────────────────
+// Fills the full 85rem column (1275px here, root font 15px), exactly like the
+// other landings: ProductLandingWidget scales its 1440 frame down to fill the
+// column, ProductImageLandingWidget uses full-width section images. So the 1200
+// design fills 1275 too (cqi = px/12 → 100cqi == the column). Aligned with the
+// product-detail block; no side fields.
+.mb-landing__stage {
+  width: 100%;
+  container-type: inline-size;
+}
+
+// box-sizing + image reset (override storefront global `img { max-width:100% }`
+// which would clamp the figma artwork that is intentionally sized > 100%).
+.mb-landing,
+.mb-landing *,
+.mb-landing *::before,
+.mb-landing *::after {
+  box-sizing: border-box;
+}
+
+.mb-landing img {
+  display: block;
+  max-width: none;
+  vertical-align: top;
+}
+
+// Long words wrap at boundaries, never split mid-glyph (agglutinative locales).
+.mb-landing h1,
+.mb-landing h2,
+.mb-landing h3,
+.mb-landing h4,
+.mb-landing p {
+  margin: 0;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+// ── Desktop / mobile composition toggle ──────────────────────────────────────
+.mb-landing .mb-d {
+  display: block;
+}
+.mb-landing .mb-m {
+  display: none;
+}
+@media (max-width: 43.74875em) {
+  .mb-landing .mb-d {
+    display: none;
+  }
+  .mb-landing .mb-m {
+    display: block;
+  }
+  // Mobile: the storefront product page provides its own buy action, so hide
+  // every landing add-to-cart button (Hero / Reviews / Final CTA) here.
+  .mb-landing .mb-cta {
+    display: none;
+  }
+}
+
+// ── Shared CTA button (mockup `.btn-cta`). Fluid via clamp (a control, not part
+//    of the scaled composition), so it reads consistently in every section.
+.mb-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: clamp(46px, 5cqi, 60px);
+  padding: 0 clamp(32px, 4.9cqi, 59px);
+  border: none;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border-radius: 9999px;
+  font-family: var(--mb-font-cta);
+  font-weight: 600;
+  font-size: clamp(14px, 1.58cqi, 19px);
+  line-height: 1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  }
+  &:active {
+    transform: translateY(0);
+  }
+  &.is-added {
+    background: #1d7d46;
+  }
+  &:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+}
+
+// ── Shared section heading (mockup `.sec-head` desktop / `.m-head` mobile) ────
+.mb-sec-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.667cqi;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-weight: 600;
+    font-size: clamp(20px, 2.667cqi, 32px);
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+    color: var(--mb-ink);
+    max-width: 90.5cqi;
+  }
+  p {
+    font-weight: 400;
+    font-size: clamp(13px, 1.333cqi, 16px);
+    line-height: 1.5;
+    letter-spacing: -0.15px;
+    color: var(--mb-muted);
+    max-width: 70.8cqi;
+  }
+}
+
+.mb-head-m {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+
+  h2 {
+    font-weight: 600;
+    font-size: mb-fluid(18);
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: var(--mb-ink);
+  }
+  p {
+    font-size: mb-fluid(13);
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    color: var(--mb-muted);
+    max-width: 340px;
+  }
+}
+
+// ── Decorative text helpers (mockup `.grad`, `.uline`, `.squiggle`) ───────────
+// Per-word emphasis from the mockup is applied to the whole heading span here
+// (i18n can't safely wrap arbitrary mid-sentence words).
+.mb-grad {
+  background: linear-gradient(90deg, #f2cba6, #e8b17d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mb-grad-gray {
+  background: linear-gradient(90deg, #656565, #393939);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.mb-uline {
+  position: relative;
+  display: inline-block;
+
+  .mb-squiggle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    width: 110%;
+    max-width: 372px;
+    height: 6px;
+  }
+}
+
+// Mobile underline squiggle — mirror the mockup `.m-uline img` (240px / 108% / -7px),
+// smaller than the desktop figure above (applies to hero/ritual/reviews mobile heads).
+@media (max-width: 43.74875em) {
+  .mb-uline .mb-squiggle {
+    max-width: 240px;
+    width: 108%;
+    bottom: -7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mb-landing *,
+  .mb-landing *::before,
+  .mb-landing *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .mb-cta:hover {
+    transform: none;
+  }
+}

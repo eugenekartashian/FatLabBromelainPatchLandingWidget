@@ -1,0 +1,8 @@
+<svg width="234" height="207" viewBox="0 0 234 207" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="f" x1="0" y1="0" x2="0" y2="207" gradientUnits="userSpaceOnUse"><stop stop-color="#FFEDB9"/><stop offset="0.55" stop-color="#F7CB63"/><stop offset="1" stop-color="#EDAE38"/></linearGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="207" gradientUnits="userSpaceOnUse"><stop stop-color="#F6D77F"/><stop offset="1" stop-color="#E1A02A"/></linearGradient>
+</defs>
+<polygon points="62.9,8.8 171.1,8.8 225.2,103.5 171.1,198.2 62.9,198.2 8.8,103.5" fill="url(#s)" stroke="url(#s)" stroke-width="20" stroke-linejoin="round"/>
+<polygon points="62.9,8.8 171.1,8.8 225.2,103.5 171.1,198.2 62.9,198.2 8.8,103.5" fill="url(#f)" stroke="url(#f)" stroke-width="17" stroke-linejoin="round"/>
+</svg>

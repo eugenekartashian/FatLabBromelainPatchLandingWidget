@@ -1,0 +1,26 @@
+@font-face { font-family: 'Gilroy'; src: url('/fonts/gilroy-regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/fonts/gilroy-medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Gilroy'; src: url('/fonts/gilroy-semibold.woff2') format('woff2'); font-weight: 600; font-display: swap; }
+
+// Глобальні стилі сайту, які «протікають» у лендінг. Відтворено навмисно:
+// лендінг має виглядати правильно попри них (див. README, п. 4.6).
+html { font-size: 15px; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+body { margin: 0; font-family: 'Gilroy', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; line-height: 1.3333; background: #fff; color: #000; }
+img { display: inline-block; vertical-align: middle; max-width: 100%; height: auto; }
+h1, h2, h3, h4, h5, h6 { margin: 0 0 0.5rem; font-weight: 500; line-height: 1.4; }
+h1 { font-size: 26px; } h2 { font-size: 22px; } h3 { font-size: 19px; } h4 { font-size: 18px; } h5 { font-size: 17px; } h6 { font-size: 16px; }
+@media (min-width: 43.75em) {
+  h1 { font-size: 40px; } h2 { font-size: 37px; } h3 { font-size: 31px; } h4 { font-size: 25px; } h5 { font-size: 20px; }
+}
+p { margin: 0 0 1rem; line-height: 1.3333; }
+ul, ol { margin: 0 0 1rem 1.25rem; }
+a { line-height: inherit; color: #000; text-decoration: none; cursor: pointer; }
+a:hover, a:focus { color: #000; }
+button { padding: 0; appearance: none; border: 0; border-radius: 0; background: transparent; line-height: 1; cursor: auto; }
+b, strong { font-weight: bold; line-height: inherit; }
+:focus { outline: none; }
+* { -webkit-tap-highlight-color: transparent; }
+
+.page { width: 100%; }
+.page__product { max-width: 85rem; margin: 24px auto; padding: 40px 1.25rem; border: 1px dashed #bbb; color: #888; text-align: center; }

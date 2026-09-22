@@ -1,0 +1,446 @@
+// ── Reviews section (mockup `.reviews` desktop / `.m-reviews` mobile) ─────────
+// Desktop authored against the 1200px frame: px -> cqi (px / 12). Mobile keeps
+// the mockup's fluid rules.
+
+// ============ DESKTOP ============
+.mb-reviews {
+  position: relative;
+  min-height: 66.667cqi; // 800px
+  background: #fff;
+  // Sphere bleeds UP onto the Ritual section (per design); clip only the
+  // horizontal overflow (sphere extends ~8cqi past the right edge).
+  overflow-x: clip;
+  overflow-y: visible;
+  padding: 4cqi; // 48px
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.583cqi; // 43px
+
+  .mb-reviews__sphere {
+    position: absolute;
+    left: 18cqi; // 216px
+    top: -14cqi; // bleeds further up so it tucks under the Ritual info banner
+    width: 90.083cqi; // 1081px
+    height: 90.083cqi;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .mb-reviews__head {
+    position: relative;
+    z-index: 2;
+    width: 77.333cqi; // 928px
+    border-radius: 1.667cqi; // 20px
+    border: 1px solid #d0d0d0;
+    background: rgba(109, 109, 109, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.667cqi; // 8px
+    padding: 0.833cqi 0; // 10px
+
+    h2 {
+      font-weight: 600;
+      font-size: clamp(20px, 2.667cqi, 32px);
+      line-height: 1.25;
+      letter-spacing: -0.8px;
+      color: #000;
+      text-align: center;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    p {
+      font-weight: 400;
+      font-size: clamp(13px, 1.333cqi, 16px);
+      line-height: 1.5;
+      letter-spacing: -0.15px;
+      color: #000;
+      text-align: center;
+      text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .mb-reviews__grid {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 2.667cqi; // 32px
+    align-items: stretch;
+  }
+
+  .mb-rcard {
+    width: 24cqi; // 288px
+    border-radius: 2cqi; // 24px
+    border: 1px solid #bcbcbc;
+    // Opaque-enough frosted panel so the device/spheres behind don't bleed
+    // through and kill the quote's contrast (esp. the centre card over the
+    // dark device). Matches the mobile card.
+    background: rgba(244, 244, 245, 0.88);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.583cqi; // 19px
+    padding: 2.75cqi; // 33px
+
+    &--dark {
+      .mb-rquote {
+        color: #000;
+      }
+      .mb-cn {
+        color: #000;
+      }
+    }
+  }
+
+  .mb-stars {
+    display: flex;
+    gap: 0.333cqi; // 4px
+    height: 1.333cqi; // 16px (mockup — smaller than the prior 20px)
+
+    img {
+      width: 1.333cqi; // 16px
+      height: 1.333cqi;
+    }
+  }
+
+  .mb-rtag {
+    align-self: flex-start;
+    background: var(--mb-accent);
+    border: 1px solid #fef5f4;
+    border-radius: 9999px;
+    padding: 0.417cqi 1.083cqi; // 5px 13px
+    font-weight: 500;
+    font-size: clamp(11px, 1.167cqi, 14px);
+    line-height: 1.43;
+    letter-spacing: -0.15px;
+    color: #000;
+  }
+
+  .mb-rquote {
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(12px, 1.333cqi, 16px);
+    line-height: 1.5;
+    letter-spacing: -0.31px;
+    color: #364153;
+    flex: 1;
+  }
+
+  .mb-rauthor {
+    border-top: 1px solid #3d3d3d;
+    padding-top: 0.667cqi; // 8px
+    display: flex;
+    align-items: center;
+    gap: 1.333cqi; // 16px
+  }
+
+  .mb-ravatar {
+    flex: 0 0 auto;
+    width: 3.333cqi; // 40px
+    height: 3.333cqi;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      // Full per-review avatar image fills the circle (colour + face come from
+      // the image; the --mb-ravatar bg is just a load/fallback colour).
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .mb-nm {
+    font-weight: 600;
+    font-size: clamp(13px, 1.333cqi, 16px);
+    line-height: 1.5;
+    letter-spacing: -0.31px;
+    color: var(--mb-ink);
+  }
+
+  .mb-cn {
+    font-weight: 400;
+    font-size: clamp(11px, 1.167cqi, 14px);
+    line-height: 1.43;
+    letter-spacing: -0.15px;
+    color: var(--mb-muted2);
+  }
+
+  .mb-cta {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// ============ MOBILE ============
+.mb-reviews-m {
+  position: relative;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  // The sphere self-clips (see &__sphere) so the section stays overflow:visible —
+  // otherwise it cut the carousel arrows that overhang ~7px. (overflow:clip +
+  // overflow-clip-margin isn't honoured on iOS Safari, which clipped them there.)
+  overflow: visible;
+  padding: 24px 0;
+  width: 100%;
+
+  .mb-reviews-m__sphere {
+    // Self-clipping wrapper at the section bounds: the image inside bleeds and is
+    // clipped here, so the section no longer needs overflow:clip (which cut the
+    // carousel arrows on iOS Safari).
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+    z-index: 0;
+
+    img {
+      position: absolute;
+      left: 8%;
+      top: 0;
+      width: 114%;
+      max-width: 460px;
+      height: auto;
+    }
+  }
+
+  .mb-reviews-m__head {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #d9d9d9;
+    background: rgba(109, 109, 109, 0.22);
+    backdrop-filter: blur(5px);
+    padding: 12px;
+    text-align: center;
+
+    h2 {
+      font-size: mb-fluid(18);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.8px;
+      color: #000;
+      text-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
+    }
+    p {
+      font-size: mb-fluid(12);
+      color: #000;
+      margin-top: 4px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .mb-rcar {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .mb-rcar__stage {
+    position: relative;
+    width: 100%;
+  }
+
+  .mb-rcar__viewport {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .mb-rcar__track {
+    display: flex;
+    align-items: stretch;
+    touch-action: pan-y;
+    will-change: transform;
+
+    &.is-drag {
+      user-select: none;
+      cursor: grabbing;
+    }
+  }
+
+  .mb-rcard-m {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    border-radius: 16px;
+    border: 1px solid #bcbcbc;
+    // Opaque-enough frosted panel: the decorative sphere/device behind must not
+    // bleed through and kill the quote's contrast (the dark device used to show
+    // through the old rgba(109,109,109,0.22) and made text unreadable).
+    background: rgba(244, 244, 245, 0.88);
+    backdrop-filter: blur(8px);
+    // Side padding ≥ the arrow reach: the 36px arrows sit at -7px, i.e. they
+    // cover the card up to 29px in — keep the text clear of them.
+    padding: 14px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mb-stars-m {
+    display: flex;
+    gap: 3px;
+    height: 14px;
+
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .mb-rtag-m {
+    align-self: flex-start;
+    background: var(--mb-accent);
+    border: 1px solid #fef5f4;
+    border-radius: 9999px;
+    padding: 4px 10px;
+    font-size: mb-fluid(11);
+    font-weight: 500;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  .mb-rquote-m {
+    font-style: italic;
+    font-size: mb-fluid(12);
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    color: #364153;
+    // The track stretches every slide to the tallest card; let the quote soak
+    // up the slack so the author footer stays pinned to the card bottom.
+    flex: 1;
+  }
+
+  .mb-rfoot {
+    border-top: 1px solid rgba(60, 60, 60, 0.45);
+    padding-top: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .mb-ravatar-m {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .mb-nm {
+    font-size: mb-fluid(13);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--mb-ink);
+  }
+
+  .mb-cn {
+    font-size: mb-fluid(11);
+    color: var(--mb-muted2);
+  }
+
+  // Same look as the main-page banner arrows (CarouselBase + ArrowIconLarge):
+  // plain white circle, soft 0 0 5px halo, thin round-capped chevron.
+  .mb-rcar__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 0;
+    background: #fff;
+    // Defined edge on the white section background — without a border the faint
+    // shadow at 0.8 opacity made the white circles blend into the white bg on
+    // mobile. A thin ring + stronger drop shadow at full opacity makes them read.
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.1s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    color: #1d1d1d;
+
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      opacity: 1;
+      transform: translateY(-50%) scale(0.93);
+    }
+
+    svg {
+      width: 13px;
+      height: 20px;
+    }
+
+    &--prev {
+      left: -7px;
+
+      svg {
+        transform: rotate(180deg);
+        margin-right: 3px;
+      }
+    }
+    &--next {
+      right: -7px;
+
+      svg {
+        margin-left: 3px;
+      }
+    }
+  }
+
+  .mb-rcar__dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .mb-rcar__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    border: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+    transition: width 0.25s, height 0.25s, background 0.25s;
+
+    // Active = a larger filled circle (not a pill), solid dark — per reference.
+    &.is-active {
+      width: 13px;
+      height: 13px;
+      background: #000;
+    }
+  }
+}

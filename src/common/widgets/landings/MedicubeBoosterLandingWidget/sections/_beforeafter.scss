@@ -1,0 +1,497 @@
+// BeforeAfterSection — mockup `.ba` (desktop) / `.m-ba` (mobile).
+// Desktop authored against the 1200px frame: px -> cqi (cqi = px / 12).
+
+// ── Desktop composition ──────────────────────────────────────────────────────
+.mb-ba {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3.333cqi;
+  // Mirror the mockup `.ba { min-height: 800px }` (800 / 12 = 66.667cqi) so the
+  // content keeps its vertical breathing room.
+  min-height: 66.667cqi;
+  padding: 4cqi;
+  background: linear-gradient(to bottom, #fff, #f9e5d3);
+}
+
+// Decorative icon pattern behind the section content (sits on top of the
+// gradient, under everything else). Background-image is set inline via `asset()`
+// so it follows the local-test asset toggle; here we just tile it on both axes.
+// Tile = the Figma "Pattern Desktop" frame (815×541), sized in the landing's
+// px→cqi scale (cqi = px/12) so the icon density matches the design.
+.mb-ba__pattern {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 67.917cqi 45.083cqi;
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+.mb-ba > :not(.mb-ba__pattern) {
+  position: relative;
+  z-index: 1;
+}
+
+.mb-ba__head {
+  margin-bottom: 3.333cqi; // 40px
+
+  h2 {
+    line-height: 1.25;
+  }
+}
+
+// First word of the BA title in the accent colour (mockup); rest stays --mb-ink.
+// Shared by the desktop (`.mb-ba__head`) and mobile (`.mb-ba-m__head`) titles.
+.mb-ba__accent {
+  color: var(--mb-accent);
+}
+
+.mb-ba__row {
+  display: flex;
+  gap: 4.167cqi;
+  align-items: center;
+  justify-content: center;
+  width: 92cqi;
+  max-width: 100%;
+}
+
+// Before/after slider wrapper (mockup `.ba-compare`).
+.mb-ba__compare {
+  flex: 0 0 auto;
+  width: 36.667cqi;
+  height: 49.833cqi;
+  border-radius: 2cqi;
+  user-select: none;
+  cursor: ew-resize;
+  // Pointer-drag owns the horizontal gesture: without this, touch devices treat
+  // the swipe as a scroll/pan and fire pointercancel mid-drag, so the slider
+  // jumps/aborts. Mirrors the working pink slider (.product-image-landing-widget__ba).
+  touch-action: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+// Slider internals (markup is owned by BeforeAfterSlider).
+.mb-ba .mb-compare {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+}
+.mb-ba .mb-compare__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.mb-ba .mb-compare__after {
+  z-index: 1;
+}
+.mb-ba .mb-compare__before {
+  position: absolute;
+  inset: 0;
+  width: var(--mb-pct, 50%);
+  overflow: hidden;
+  z-index: 2;
+}
+.mb-ba .mb-compare__before-img {
+  width: 100cqi;
+  height: 100%;
+  max-width: none;
+}
+// Slider internals are sized in `cqi` relative to `.mb-compare` itself (it is a
+// container) — i.e. % of the SLIDER width (~467px), NOT the 1200 frame. Mockup
+// px → slider-cqi = px / 4.4 (slider is 440px native): tag 40px → 9.091cqi, etc.
+.mb-ba .mb-compare__tag {
+  position: absolute;
+  bottom: 7.955cqi;
+  z-index: 4;
+  height: 9.091cqi;
+  display: flex;
+  align-items: center;
+  padding: 0 3.636cqi;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 500;
+  font-size: clamp(11px, 3.636cqi, 16px);
+  line-height: 1.5;
+  letter-spacing: -0.31px;
+  text-transform: capitalize;
+  pointer-events: none;
+}
+.mb-ba .mb-compare__tag--before {
+  left: 5.455cqi;
+  background: rgba(0, 0, 0, 0.5);
+}
+.mb-ba .mb-compare__tag--after {
+  right: 5.455cqi;
+  background: #000;
+}
+.mb-ba .mb-compare__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--mb-pct, 50%);
+  width: 0.909cqi;
+  background: #fff;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 2.273cqi 1.705cqi rgba(0, 0, 0, 0.1);
+}
+.mb-ba .mb-compare__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 9.091cqi;
+  height: 9.091cqi;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.909cqi;
+  box-shadow: 0 1.818cqi 3.182cqi rgba(0, 0, 0, 0.18);
+}
+.mb-ba .mb-compare__handle span {
+  width: 0.455cqi;
+  height: 3.636cqi;
+  border-radius: 2px;
+  background: #99a1af;
+}
+
+// Benefit list (mockup `.benefits` / `.bcard`).
+.mb-ba__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.833cqi;
+  width: 43.333cqi;
+  max-width: 100%;
+}
+.mb-ba__bcard {
+  position: relative;
+  width: 100%;
+  height: 11.667cqi;
+  border-radius: 2cqi;
+  overflow: hidden;
+  border: 2px solid transparent;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)) padding-box,
+    linear-gradient(161.4deg, rgba(168, 168, 168, 0.8), rgba(254, 242, 248, 0.5)) border-box;
+  box-shadow: 0 8px 24px rgba(168, 148, 130, 0.18);
+
+  // Mockup: every icon square keeps a dark corner (like card 1's base gradient);
+  // the previous overrides started transparent, which read as washed-out/light.
+  &:nth-child(2) .mb-ba__bcard-icon {
+    background: linear-gradient(135deg, rgba(19, 17, 17, 0.4), rgba(255, 255, 255, 0.4));
+  }
+  &:nth-child(3) .mb-ba__bcard-icon {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(250, 245, 255, 0.4));
+  }
+  &:nth-child(4) .mb-ba__bcard-icon {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(159, 159, 159, 0.4));
+  }
+}
+.mb-ba__bcard-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.667cqi;
+  padding: 2.667cqi;
+}
+.mb-ba__bcard-icon {
+  flex: 0 0 auto;
+  width: 5.333cqi;
+  height: 5.333cqi;
+  border-radius: 1.333cqi;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(253, 242, 248, 0.4));
+
+  img {
+    width: 2.667cqi;
+    height: 2.667cqi;
+  }
+}
+.mb-ba__bcard-txt {
+  h3 {
+    font-weight: 600;
+    font-size: clamp(13px, 1.667cqi, 20px);
+    line-height: 1.4;
+    letter-spacing: -0.44px;
+    color: var(--mb-ink);
+    margin-bottom: 0.667cqi;
+  }
+  p {
+    font-weight: 400;
+    font-size: clamp(11px, 1.333cqi, 16px);
+    line-height: 1.5;
+    letter-spacing: -0.31px;
+    color: var(--mb-muted);
+  }
+}
+.mb-ba__bcard-num {
+  position: absolute;
+  left: 6.333cqi;
+  top: 2cqi;
+  width: 2.333cqi;
+  height: 2.333cqi;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: clamp(9px, 1.083cqi, 13px);
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+.mb-ba__bubble {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(159, 159, 159, 0.5), rgba(0, 0, 0, 0) 70%);
+}
+.mb-ba__bubble--1 {
+  width: 10.667cqi;
+  height: 10.667cqi;
+  right: -2.667cqi;
+  top: -2.667cqi;
+  opacity: 0.6;
+}
+.mb-ba__bubble--2 {
+  width: 8cqi;
+  height: 8cqi;
+  left: -1.333cqi;
+  top: 7.917cqi;
+  opacity: 0.45;
+}
+
+// ── Mobile composition ───────────────────────────────────────────────────────
+.mb-ba-m {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  // Coloured block: outer edge sits at the landing's standard 18.75px inset; the
+  // 15px inner padding (Figma p-15) keeps the gradient visible around the content
+  // so the benefit cards don't run flush to the block edges.
+  padding: 15px;
+  background: linear-gradient(to bottom, #fff, #f9e5d3);
+}
+
+// Decorative icon pattern behind the mobile section content (see desktop note).
+// Tile = the Figma "Pattern Mobile" frame (301×200), tiled at native size.
+.mb-ba-m__pattern {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 301px 200px;
+  opacity: 1;
+  z-index: 0;
+  pointer-events: none;
+}
+.mb-ba-m > :not(.mb-ba-m__pattern) {
+  position: relative;
+  z-index: 1;
+}
+
+.mb-ba-m__head h2 {
+  font-size: mb-fluid(18);
+}
+
+.mb-ba__compare--m {
+  width: 100%;
+  max-width: 232px;
+  height: auto;
+  aspect-ratio: 216 / 175;
+  border-radius: 10px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.mb-ba-m .mb-compare {
+  position: relative;
+  container-type: inline-size;
+  overflow: hidden;
+}
+.mb-ba-m .mb-compare__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.mb-ba-m .mb-compare__after {
+  z-index: 1;
+}
+.mb-ba-m .mb-compare__before {
+  position: absolute;
+  inset: 0;
+  width: var(--mb-pct, 50%);
+  overflow: hidden;
+  z-index: 2;
+}
+.mb-ba-m .mb-compare__before-img {
+  width: 100cqi;
+  height: 100%;
+  max-width: none;
+}
+.mb-ba-m .mb-compare__tag {
+  position: absolute;
+  bottom: 10px;
+  z-index: 4;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 500;
+  font-size: mb-fluid(11);
+  text-transform: capitalize;
+  pointer-events: none;
+}
+.mb-ba-m .mb-compare__tag--before {
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+}
+.mb-ba-m .mb-compare__tag--after {
+  right: 10px;
+  background: #000;
+}
+.mb-ba-m .mb-compare__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--mb-pct, 50%);
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.mb-ba-m .mb-compare__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+.mb-ba-m .mb-compare__handle span {
+  width: 1.5px;
+  height: 7px;
+  border-radius: 2px;
+  background: #99a1af;
+}
+
+// 2x2 benefit grid (mockup `.m-benefits` / `.m-bcard`).
+.mb-ba-m__benefits {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  width: 100%;
+}
+.mb-ba-m__bcard {
+  position: relative;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  border-radius: 7.5px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(closest-side, rgba(168, 168, 168, 0.9), rgba(0, 0, 0, 0));
+  }
+  &::before {
+    width: 42px;
+    height: 42px;
+    right: -8px;
+    top: -12px;
+    opacity: 0.18;
+  }
+  &::after {
+    width: 30px;
+    height: 30px;
+    left: -6px;
+    bottom: -4px;
+    opacity: 0.1;
+  }
+}
+.mb-ba-m__bcard-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(253, 242, 248, 0.55));
+
+  img {
+    width: 10px;
+    height: 10px;
+  }
+}
+.mb-ba-m__bcard-txt {
+  flex: 1;
+  min-width: 0;
+
+  h3 {
+    font-size: mb-fluid(10);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.3px;
+    color: var(--mb-ink);
+    margin-bottom: 3px;
+  }
+  p {
+    font-size: mb-fluid(9);
+    line-height: 1.3;
+    letter-spacing: -0.1px;
+    color: var(--mb-muted);
+  }
+}
+.mb-ba-m__bcard-num {
+  position: absolute;
+  left: 23.75px;
+  top: 7.5px;
+  width: 8.75px;
+  height: 8.75px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: mb-fluid(6);
+  font-weight: 600;
+  z-index: 3;
+}
