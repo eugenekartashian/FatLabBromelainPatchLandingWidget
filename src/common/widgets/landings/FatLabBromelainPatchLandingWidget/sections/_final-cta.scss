@@ -25,7 +25,7 @@
   &__shadow { position: absolute; z-index: 1; }
   &__shadow--left { left: 36.250cqi; top: 41.042cqi; width: 31.847cqi; height: 9.653cqi; }
   &__shadow--right { left: 66.750cqi; top: 46.646cqi; width: 28.597cqi; height: 4.931cqi; }
-  &__product { position: absolute; z-index: 2; left: 57.778cqi; top: 10.208cqi; width: 36.875cqi; height: 41.597cqi; }
+  &__product { position: absolute; z-index: 2; left: 57.778cqi; top: 10.208cqi; width: 36.875cqi; height: 40.984cqi; }
   &__leaf { position: absolute; z-index: 3; left: 79.444cqi; top: 34.028cqi; width: 20.556cqi; height: 21.528cqi; }
 
   &__content {
@@ -212,6 +212,6 @@
   }
 
   &__shadow { position: absolute; z-index: 0; left: 0; top: 74.570%; width: 46.056%; height: auto; }
-  &__product { position: absolute; z-index: 1; left: 28.753%; top: 0; width: 65.649%; height: auto; }
+  &__product { position: absolute; z-index: 1; left: 28.753%; bottom: 0; width: 65.649%; height: auto; }
   &__leaf { position: absolute; z-index: 2; left: 66.667%; top: 57.732%; width: 33.333%; height: auto; }
 }

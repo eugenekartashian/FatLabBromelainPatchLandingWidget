@@ -105,10 +105,10 @@
 - **Автоматичні перевірки з README (п. 9), прогнано 2026-09-22, усі пройдено:**
   - `npm run typecheck` — `tsc --noEmit` без помилок (exit 0).
   - `npm run build` — `tsc --noEmit && vite build` без помилок; збірка:
-    `dist/assets/index-*.css` 55,63 kB (gzip 9,76 kB), `dist/assets/index-*.js`
-    237,51 kB (gzip 71,73 kB).
+    `dist/assets/index-*.css` 55,80 kB (gzip 9,85 kB), `dist/assets/index-*.js`
+    237,31 kB (gzip 71,66 kB).
   - `npm run check:keys -- src/common/widgets/landings/FatLabBromelainPatchLandingWidget FLB`
-    → `prefix FLB_: 96 keys in code, 96 keys in src/copy.ts` / `OK: keys match`.
+    → `prefix FLB_: 93 keys in code, 93 keys in src/copy.ts` / `OK: keys match`.
   - `npm run check:text -- src/common/widgets/landings/FatLabBromelainPatchLandingWidget`
     →
     `OK: no hardcoded text found in JSX (heuristic — also review each .tsx by eye)`.

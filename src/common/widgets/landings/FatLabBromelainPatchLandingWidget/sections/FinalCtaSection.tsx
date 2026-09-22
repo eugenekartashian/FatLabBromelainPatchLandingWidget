@@ -82,8 +82,8 @@ export function FinalCtaSection() {
             <img
               className='flb-final__product'
               src={asset('final-product.webp')}
-              width={1062}
-              height={1198}
+              width={1023}
+              height={1137}
               alt={t('FLB_FINAL_PRODUCT_ALT')}
               loading='lazy'
               decoding='async'
@@ -133,8 +133,8 @@ export function FinalCtaSection() {
               <img
                 className='flb-final-m__product'
                 src={asset('final-product-m.webp')}
-                width={516}
-                height={582}
+                width={498}
+                height={546}
                 alt={t('FLB_FINAL_PRODUCT_ALT')}
                 loading='lazy'
                 decoding='async'
@@ -143,8 +143,8 @@ export function FinalCtaSection() {
                 className='flb-final-m__leaf'
                 data-flb-parallax='0.09'
                 src={asset('final-leaf-m.webp')}
-                width={262}
-                height={248}
+                width={324}
+                height={340}
                 alt=''
                 aria-hidden='true'
                 loading='lazy'

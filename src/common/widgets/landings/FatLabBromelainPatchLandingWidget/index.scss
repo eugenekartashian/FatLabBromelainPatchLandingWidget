@@ -130,7 +130,8 @@ $flb-fluid-bump: 1;
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+  position: relative;
+  transition: all 250ms ease-out, color 250ms ease-out;
 
   &:hover {
     transform: translateY(-2px);
@@ -138,8 +139,34 @@ $flb-fluid-bump: 1;
   }
 
   &:active { transform: translateY(0); }
-  &.is-added { background: #3c6f27; }
   &:focus-visible { outline: 2px solid var(--flb-ink); outline-offset: 3px; }
+  &:disabled { cursor: default; }
+
+  &__label { transition: opacity 250ms ease-out; }
+  &.is-loading &__label { opacity: 0; }
+
+  &__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.25em;
+    height: 1.25em;
+    margin: -0.625em 0 0 -0.625em;
+    border: 0.16em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 250ms ease-out;
+  }
+
+  &.is-loading &__spinner {
+    opacity: 1;
+    animation: flb-cta-spin 750ms linear infinite;
+  }
+}
+
+@keyframes flb-cta-spin {
+  to { transform: rotate(1turn); }
 }
 
 .flb-reveal .flb-hero__content > *,

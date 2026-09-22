@@ -14,9 +14,9 @@ const NUM_SIZES = [[110, 245], [173, 250], [180, 250]] as const;
 const PHOTO_SIZES = [[522, 341], [500, 374], [536, 400]] as const;
 
 const steps = [
-  ['FLB_USAGE_STEP_1', 'FLB_USAGE_STEP_1_TITLE', 'FLB_USAGE_STEP_1_DESCRIPTION'],
-  ['FLB_USAGE_STEP_2', 'FLB_USAGE_STEP_2_TITLE', 'FLB_USAGE_STEP_2_DESCRIPTION'],
-  ['FLB_USAGE_STEP_3', 'FLB_USAGE_STEP_3_TITLE', 'FLB_USAGE_STEP_3_DESCRIPTION'],
+  ['FLB_USAGE_STEP_1_TITLE', 'FLB_USAGE_STEP_1_DESCRIPTION'],
+  ['FLB_USAGE_STEP_2_TITLE', 'FLB_USAGE_STEP_2_DESCRIPTION'],
+  ['FLB_USAGE_STEP_3_TITLE', 'FLB_USAGE_STEP_3_DESCRIPTION'],
 ] as const;
 
 const days = [
@@ -33,10 +33,10 @@ function Steps({ prefix }: { prefix: string }) {
   const t = useTranslationOnPage('landings');
   return (
     <>
-      {steps.map(([numberKey, titleKey, descriptionKey], index) => {
+      {steps.map(([titleKey, descriptionKey], index) => {
         const n = index + 1;
         return (
-          <article className={`${prefix}__step ${prefix}__step--${n}`} key={numberKey}>
+          <article className={`${prefix}__step ${prefix}__step--${n}`} key={titleKey}>
             <img
               className={`${prefix}__num`}
               src={asset(`usage-num-${n}.svg`)}
@@ -59,7 +59,8 @@ function Steps({ prefix }: { prefix: string }) {
                 loading='lazy'
                 decoding='async'
               />
-              <span className={`${prefix}__badge`}>{t(numberKey)}</span>
+              {/* invisible spacer: keeps the title/description where the number badge used to sit */}
+              <span className={`${prefix}__badge-spacer`} aria-hidden='true' />
               <h3>{t(titleKey)}</h3>
               <p>{t(descriptionKey)}</p>
             </div>
