@@ -13,8 +13,8 @@
   min-height: 55.556cqi;
   overflow: hidden;
   background:
-    radial-gradient(ellipse 34cqi 21cqi at 64.5cqi 21cqi, #fff0c6 0%, rgba(253, 230, 170, 0.75) 45%, rgba(239, 194, 105, 0) 100%),
-    #efc269;
+    radial-gradient(ellipse 34cqi 21cqi at 64.5cqi 21cqi, #fff0c6 0%, rgba(253, 230, 170, 0.75) 45%, rgba(236, 184, 79, 0) 100%),
+    #ecb84f;
   color: var(--flb-ink);
 
   &__pattern {
@@ -195,7 +195,7 @@
   position: relative;
   padding: 40px 0 28px;
   overflow: hidden;
-  background: linear-gradient(180deg, #f3d394 0%, #f2cf8a 8.4%, #f1cb7f 15.5%, #efc774 22.6%, #eec472 29.7%, #edbe5f 36.8%, #ecba55 43.9%, #ecb648 51%, #ebb445 58%, #eaad35 65.2%, #e9aa2a 72.3%, #e8a620 79.3%, #e7a115 86.5%, #e69e0b 93.6%, #e69a01 100%);
+  background: linear-gradient(180deg, #f1cb7f 0%, #efc774 8.4%, #eec472 15.5%, #edbe5f 22.6%, #ecba55 29.7%, #ecb648 36.8%, #ebb445 43.9%, #eaad35 51%, #e9aa2a 58%, #e8a620 65.2%, #e7a115 72.3%, #e69e0b 79.3%, #e69a01 86.5%, #e69a01 93.6%, #e69a01 100%);
   color: var(--flb-ink);
 
   &__pattern {

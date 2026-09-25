@@ -65,8 +65,8 @@ export function ResultsSection() {
             <img
               className='flb-results__product'
               src={asset('results-product.webp')}
-              width={1518}
-              height={1378}
+              width={1402}
+              height={1141}
               alt=''
               loading='lazy'
               decoding='async'
@@ -107,8 +107,8 @@ export function ResultsSection() {
             <img
               className='flb-results-m__product'
               src={asset('results-product-m.webp')}
-              width={670}
-              height={608}
+              width={1402}
+              height={1141}
               alt=''
               loading='lazy'
               decoding='async'

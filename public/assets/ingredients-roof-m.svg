@@ -1,6 +1,6 @@
 <svg width="393" height="844" viewBox="0 0 393 844" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
 <defs>
-<linearGradient id="g" x1="0" y1="0" x2="0" y2="844" gradientUnits="userSpaceOnUse"><stop stop-color="#E69B01"/><stop offset="0.05" stop-color="#E7A017"/><stop offset="0.13" stop-color="#EAAE36"/><stop offset="0.21" stop-color="#EDBA54"/><stop offset="0.28" stop-color="#EFC673"/><stop offset="0.35" stop-color="#F3D291"/><stop offset="0.42" stop-color="#F3D496"/><stop offset="1" stop-color="#F3D394"/></linearGradient>
+<linearGradient id="g" x1="0" y1="0" x2="0" y2="844" gradientUnits="userSpaceOnUse"><stop stop-color="#E69B01"/><stop offset="0.05" stop-color="#E69A01"/><stop offset="0.13" stop-color="#E8A620"/><stop offset="0.21" stop-color="#EBB445"/><stop offset="0.28" stop-color="#ECBA55"/><stop offset="0.35" stop-color="#EEC472"/><stop offset="0.42" stop-color="#EFC774"/><stop offset="1" stop-color="#F1CB7F"/></linearGradient>
 </defs>
 <path d="M0 83L118 8Q125 3 132 7L393 137V844H0Z" fill="url(#g)"/>
 </svg>

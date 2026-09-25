@@ -1,3 +1,3 @@
 <svg width="1440" height="650" viewBox="0 0 1440 650" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#EFC269"/><stop offset="0.55" stop-color="#EBB338"/><stop offset="1" stop-color="#E69B01"/></linearGradient></defs>
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="650" gradientUnits="userSpaceOnUse"><stop stop-color="#ECB84F"/><stop offset="0.55" stop-color="#E8AC28"/><stop offset="1" stop-color="#E69B01"/></linearGradient></defs>
 <path d="M0 340L545 632Q570 646 596 630L1440 55V0H0Z" fill="url(#g)"/></svg>

@@ -83,10 +83,34 @@
     pointer-events: none;
   }
 
-  &__shape { position: absolute; left: 52.68cqi; top: 4.049cqi; width: 61.58cqi; height: 54.12cqi; }
-  &__leaf { position: absolute; left: 55.49cqi; top: 10.139cqi; width: 32.36cqi; height: 31.39cqi; }
-  &__product { position: absolute; left: 47.29cqi; top: 8.75cqi; width: 52.71cqi; height: 47.85cqi; }
-  &__logo { position: absolute; left: 85.07cqi; top: 50.83cqi; width: 7.78cqi; height: 1.53cqi; }
+  &__shape {
+    position: absolute;
+    left: 52.68cqi;
+    top: 4.049cqi;
+    width: 61.58cqi;
+    height: 51.12cqi;
+  }
+  &__leaf {
+    position: absolute;
+    left: 55.49cqi;
+    top: 10.139cqi;
+    width: 32.36cqi;
+    height: 31.39cqi;
+  }
+  &__product {
+    position: absolute;
+    left: 47.29cqi;
+    top: 8.75cqi;
+    width: 52.71cqi;
+    height: 42.9cqi;
+  }
+  &__logo {
+    position: absolute;
+    left: 85.07cqi;
+    top: 46.83cqi;
+    width: 7.78cqi;
+    height: 1.53cqi;
+  }
 }
 
 .flb-results-m {
@@ -171,8 +195,32 @@
     pointer-events: none;
   }
 
-  &__shape { position: absolute; left: 23.5%; top: 0; width: 99.4%; height: 89%; }
-  &__leaf { position: absolute; left: 28%; top: 10%; width: 52.4%; height: auto; }
-  &__product { position: absolute; left: 14.8%; top: 7.73%; width: 85.2%; height: auto; }
-  &__logo { position: absolute; left: 75.9%; top: 77.1%; width: 12.7%; height: auto; }
+  &__shape {
+    position: absolute;
+    left: 23.5%;
+    top: 0;
+    width: 99.4%;
+    height: 84%;
+  }
+  &__leaf {
+    position: absolute;
+    left: 28%;
+    top: 10%;
+    width: 52.4%;
+    height: auto;
+  }
+  &__product {
+    position: absolute;
+    left: 14.8%;
+    top: 7.73%;
+    width: 85.2%;
+    height: auto;
+  }
+  &__logo {
+    position: absolute;
+    left: 75.9%;
+    top: 70.1%;
+    width: 12.7%;
+    height: auto;
+  }
 }
